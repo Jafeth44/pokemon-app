@@ -11,9 +11,10 @@ import {
   Menu,
   Divider,
   ListItemIcon,
+  Icon,
 } from "@mui/material";
 import IconPokeball from "./pokeball";
-import { Logout, Settings, Menu as MenuIcon } from "@mui/icons-material";
+import { Logout, Settings, Menu as MenuIcon, More, MoreHoriz } from "@mui/icons-material";
 import { useState } from "react";
 
 export const Navbar = () => {
@@ -61,7 +62,7 @@ export const Navbar = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
               }}>
-              nombre usuario
+                <Typography sx={{display: {xs: 'none', sm: 'block'}}} textTransform={'none'}>nombre usuario</Typography>
               <Avatar sx={{ marginLeft: "3px" }} />
             </Button>
           </Tooltip>
