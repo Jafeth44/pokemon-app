@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { PokemonApp } from "../app/PokemonApp";
 import { RegionPage } from "../app/pages/RegionPage";
 import { LandingPage } from "../app/pages/LandingPage";
+import { regionLoader } from "../data/loaders/region.loader";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +18,8 @@ export const router = createBrowserRouter([
       },
       {
         path: '/:regionId',
-        element: <RegionPage />
+        element: <RegionPage />,
+        loader: regionLoader
       }
     ]
   }

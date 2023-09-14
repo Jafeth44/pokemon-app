@@ -12,5 +12,14 @@ export const redTheme = createTheme({
     error: {
       main: red.A400
     }
-  }
+  },
+  components: {
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgb(155, 202, 255)'
+        }
+      }
+    },
+  },
 })

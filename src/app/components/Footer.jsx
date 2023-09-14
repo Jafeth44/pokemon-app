@@ -5,7 +5,7 @@ export const Footer = () => {
     <Box 
       height={'50px'}
       width={'100%'}
-      position={'absolute'}
+      position={'static'}
       bottom={0}
       display={'flex'}
       justifyContent={'center'}

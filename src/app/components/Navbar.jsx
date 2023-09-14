@@ -1,18 +1,4 @@
-import {
-  AppBar,
-  Avatar,
-  Button,
-  Grid,
-  IconButton,
-  MenuItem,
-  Toolbar,
-  Tooltip,
-  Typography,
-  Menu,
-  Divider,
-  ListItemIcon,
-  Icon,
-} from "@mui/material";
+import {  AppBar,  Avatar,  Button,  Grid,  IconButton,  MenuItem,  Toolbar,  Tooltip,  Typography,  Menu,  Divider,  ListItemIcon} from "@mui/material";
 import IconPokeball from "./pokeball";
 import { Logout, Settings, Menu as MenuIcon, More, MoreHoriz } from "@mui/icons-material";
 import { useState } from "react";
