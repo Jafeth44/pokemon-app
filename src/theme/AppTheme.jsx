@@ -1,10 +1,20 @@
 import { ThemeProvider } from "@emotion/react"
-import { CssBaseline } from "@mui/material"
+import { CssBaseline, useMediaQuery } from "@mui/material"
 import { redTheme } from "./redTheme"
+import { useMemo } from "react";
+
+
 
 export const AppTheme = ({children}) => {
+
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+
+  const theme = useMemo(() => redTheme(prefersDarkMode), [prefersDarkMode])
+
+
+
   return (
-    <ThemeProvider theme={redTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       {children}
     </ThemeProvider>

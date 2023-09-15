@@ -20,19 +20,21 @@ export const pokemonMapper = async(jsonObj1, jsonObj2) => {
     return  data;
   }
 
+  const {flavor_text} = text.find((text) => text.language.name == 'es');
+
   const jsonObj3 = await getEvolutionChain();
 
   return new Pokemon({
     name,
     id,
-    flavorText: text[26].flavor_text,
+    flavorText: flavor_text,
     img: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id.toString().padStart(3, '0')}.png`,
-    abilities: ability.map(({ability}) => (ability.name)), // [ability[0].ability.name], 
+    abilities: ability.map(({ability}) => (ability.name)),
     types: type.map(({type}) => (type.name)),
     url: `/pokemon/${name}`,
     evolutionLine: [
-      jsonObj3.chain.evolves_to[0].species,
-      jsonObj3.chain.evolves_to[0].evolves_to[0].species
+      jsonObj3.chain.evolves_to[0]?.species,
+      jsonObj3.chain.evolves_to[0]?.evolves_to[0]?.species
     ]
   })
 };

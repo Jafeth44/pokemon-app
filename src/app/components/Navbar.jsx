@@ -24,7 +24,7 @@ export const Navbar = () => {
             justifyContent: "space-between",
             alignItems: "center",
           }}>
-          <IconButton color="inherit">
+          <IconButton color="inherit" size="large">
             <MenuIcon />
           </IconButton>
           <Grid
@@ -33,7 +33,7 @@ export const Navbar = () => {
             alignItems={"center"}
             width={"fit-content"}>
             <IconPokeball />
-            <Typography variant="h6">Pokemón App</Typography>
+            <Typography variant="h6">Pokémon App</Typography>
           </Grid>
           <Tooltip title={"Account settings"}>
             <Button
