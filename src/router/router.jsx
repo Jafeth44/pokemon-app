@@ -20,12 +20,12 @@ export const router = createBrowserRouter([
       {
         path: '/region/:regionId',
         element: <RegionPage />,
-        loader: regionLoader
+        loader: regionLoader,
       },
       {
         path: '/pokemon/:pokemonId',
         element: <h1>pokemon details</h1>,
-        loader: pokemonLoader
+        loader: pokemonLoader,
       }
     ]
   }
