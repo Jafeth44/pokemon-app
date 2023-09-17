@@ -23,7 +23,7 @@ export const RegionPage = () => {
                   component={"img"}
                   height={{ xs: "140", sm: "240" }}
                   image={poke.img}
-                  alt={`imgage of the pokémon ${poke.name}`}
+                  alt={`image of the pokémon ${poke.name}`}
                 />
               <CardContent sx={{p: '0'}}>
                 <Typography
