@@ -1,9 +1,12 @@
-import {  AppBar,  Avatar,  Button,  Grid,  IconButton,  MenuItem,  Toolbar,  Tooltip,  Typography,  Menu,  Divider,  ListItemIcon} from "@mui/material";
+import {  AppBar,  Avatar,  Button,  IconButton,  MenuItem,  Toolbar,  Tooltip,  Typography,  Menu,  Divider,  ListItemIcon} from "@mui/material";
 import IconPokeball from "./pokeball";
-import { Logout, Settings, Menu as MenuIcon, More, MoreHoriz } from "@mui/icons-material";
+import { Logout, Settings, Menu as MenuIcon } from "@mui/icons-material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -27,14 +30,20 @@ export const Navbar = () => {
           <IconButton color="inherit" size="large">
             <MenuIcon />
           </IconButton>
-          <Grid
+          <Tooltip title={'Regresar al inicio'}>
+
+          <Button
             container
             justifyContent={"center"}
             alignItems={"center"}
-            width={"fit-content"}>
+            width={"fit-content"}
+            color="inherit"
+            onClick={() => navigate('/')}
+            >
             <IconPokeball />
-            <Typography variant="h6">Pokémon App</Typography>
-          </Grid>
+            <Typography variant="h6" textTransform={'none'}>Pokémon App</Typography>
+          </Button>
+          </Tooltip>
           <Tooltip title={"Account settings"}>
             <Button
               onClick={handleClick}

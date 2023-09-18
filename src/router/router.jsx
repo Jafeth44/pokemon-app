@@ -4,6 +4,7 @@ import { RegionPage } from "../app/pages/RegionPage";
 import { LandingPage } from "../app/pages/LandingPage";
 import { regionLoader } from "../data/loaders/region.loader";
 import { pokemonLoader } from "../data/loaders/pokemon.loader";
+import { PokemonDetailPage } from "../app/pages/PokemonDetailPage";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/pokemon/:pokemonId',
-        element: <h1>pokemon details</h1>,
+        element: <PokemonDetailPage />,
         loader: pokemonLoader,
       }
     ]
