@@ -1,7 +1,9 @@
 import {Grid, Typography, Card, CardActionArea, CardMedia, CardContent} from "@mui/material";
 import regions from "../../data/models/regions.json";
+import { useNavigate } from "react-router-dom";
 
 export const LandingPage = () => {
+  const navigate = useNavigate();
 
   return (
     <>
@@ -15,21 +17,21 @@ export const LandingPage = () => {
           <Typography
           variant="h4"
           textAlign={"center"}>
-            ¡Welcome to the pokémon app!
+            ¡Bienvenido a la Pokémon App!
           </Typography>
 
           <Typography
             variant="subtitle1"
             textAlign={"center"}>
-            Please select your favorite region to watch all the pokémons
+            Selecciona tu región favorita para ver todos los pokémons
           </Typography>
         </Grid>
 
         {regions.map((region) =>
-          <Grid item key={region.id} xs={4} sm={3} md={2} lg={2}>
+          <Grid item key={region.id} xs={12} sm={6} md={3} lg={12/5}>
             <Card sx={{boxShadow: 3}}>
 
-              <CardActionArea>
+              <CardActionArea onClick={() => navigate(`/region/${region.id}`)}>
                 <CardMedia
                 component={"img"}
                 height={{  xs: "140", sm: "240"}}
@@ -45,7 +47,6 @@ export const LandingPage = () => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-
             </Card>
           </Grid>        
         )}

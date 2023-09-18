@@ -1,27 +1,27 @@
 [
     {
-        "id": 1,
+        "id": 2,
         "name": "Kanto",
         "image": "../../../public/images/regions/1.png"
 
     },
     {
-        "id": 2,
+        "id": 3,
         "name": "Johto",
         "image": "../../../public/images/regions/2.png"
     },
     {
-        "id": 3,
+        "id": 4,
         "name": "Hoenn",
         "image": "../../../public/images/regions/3.png"
     },
     {
-        "id": 4,
+        "id": 5,
         "name": "Sinnoh",
         "image": "../../../public/images/regions/4.png"
     },
     {
-        "id": 5,
+        "id": 8,
         "name": "Unova",
         "image": "../../../public/images/regions/5.png"
     },
@@ -31,7 +31,7 @@
         "image": "../../../public/images/regions/6.png"
     },
     {
-        "id": 7,
+        "id": 16,
         "name": "Alola",
         "image": "../../../public/images/regions/7.png"
     },
