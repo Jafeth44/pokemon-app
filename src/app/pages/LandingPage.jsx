@@ -1,5 +1,5 @@
 import {Grid, Typography, Card, CardActionArea, CardMedia, CardContent} from "@mui/material";
-import regions from "../components/regions.json";
+import regions from "../../data/models/regions.json";
 
 export const LandingPage = () => {
 
