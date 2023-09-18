@@ -13,7 +13,7 @@ export const RegionPage = () => {
         p={{ xs: 2, sm: 2 }}
         maxWidth={"1400px"}>
           <Grid item xs={12}>
-            <Typography variant="h4">{name}</Typography>
+            <Typography variant="h4" textTransform={"capitalize"}>{name}</Typography>
           </Grid>
         {pokemonEntries.map((poke) => (
           <Grid item key={poke.id} xs={4} sm={3} md={2} lg={2}>
@@ -29,6 +29,7 @@ export const RegionPage = () => {
                 <Typography
                   variant="h6"
                   fontSize={{ xs: "1.1rem", sm: "1.3rem" }}
+                  textTransform={"capitalize"}
                   textAlign={"center"}>
                   {poke.name}
                 </Typography>

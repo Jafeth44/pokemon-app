@@ -20,7 +20,7 @@ export const pokemonMapper = async(jsonObj1, jsonObj2) => {
     return  data;
   }
 
-  const {flavor_text} = text.find((text) => text.language.name == 'es');
+  const {flavor_text} = text.find((text) => text.language.name == 'es' || text.language.name == 'en');
 
   const jsonObj3 = await getEvolutionChain();
 

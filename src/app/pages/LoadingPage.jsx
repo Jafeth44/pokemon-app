@@ -1,4 +1,4 @@
-import { Box, Toolbar, Typography } from "@mui/material";
+import { Box, CircularProgress, Toolbar } from "@mui/material";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 
@@ -14,7 +14,7 @@ export const LoadingPage = () => {
         justifyContent={"center"}
         alignItems={"center"}
         sx={{minHeight: {xs: 'calc(100dvh - 106px)', sm: 'calc(100dvh - 114px)'}}}>
-        <Typography>Loading...</Typography>
+        <CircularProgress />
       </Box>
       <Footer />
     </>

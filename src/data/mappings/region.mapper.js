@@ -2,14 +2,14 @@ import { Region } from "../models/Region.model.js";
 
 export const regionMapper = (jsonObj) => {
   const {
-    id,               //number
-    name,             //string
-    pokemon_entries,  //[entry_number: number, pokemon_species[name: string, url: string]]
+    id,                              //number
+    main_region: {name},             //string
+    pokemon_species,  //[entry_number: number, pokemon_species[name: string, url: string]]
   } = jsonObj;
 
 
-  const pokemonEntriesArray = pokemon_entries.map(({ pokemon_species }) => (
-    [pokemon_species.name, pokemon_species.url]
+  const pokemonEntriesArray = pokemon_species.map(({ name, url }) => (
+    [name , url]
   ))
 
   const pokemonEntries = [];
@@ -31,6 +31,6 @@ export const regionMapper = (jsonObj) => {
   return new Region({
     id,
     name,
-    pokemonEntries,
+    pokemonEntries: pokemonEntries.sort((data, data2) => data.id - data2.id),
   })
 }
