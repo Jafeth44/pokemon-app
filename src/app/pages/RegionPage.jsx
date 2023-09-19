@@ -18,7 +18,7 @@ export const RegionPage = () => {
         {pokemonEntries.map((poke) => (
           <Grid item key={poke.id} xs={4} sm={3} md={2} lg={2}>
             <Card sx={{boxShadow: 3}}>
-              <CardActionArea onClick={() => navigate(`/pokemon/${poke.name}`, {relative: true})}>
+              <CardActionArea onClick={() => navigate(`/pokemon/${poke.id}`, {relative: true})}>
                 <CardMedia
                   component={"img"}
                   height={{ xs: "140", sm: "240" }}

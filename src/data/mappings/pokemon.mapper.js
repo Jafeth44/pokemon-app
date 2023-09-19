@@ -20,7 +20,7 @@ export const pokemonMapper = async(jsonObj1, jsonObj2) => {
     return  data;
   }
 
-  const {flavor_text} = text.find((text) => text.language.name == 'es' || text.language.name == 'en');
+  const {flavor_text} = text.find((text) => text.language.name == 'es' || text.language.name == 'en') || 'Datos de la pokedex no encontrados';
 
   const jsonObj3 = await getEvolutionChain();
 
@@ -33,6 +33,7 @@ export const pokemonMapper = async(jsonObj1, jsonObj2) => {
     types: type.map(({type}) => (type.name)),
     url: `/pokemon/${name}`,
     evolutionLine: [
+      jsonObj3.chain.species,
       jsonObj3.chain.evolves_to[0]?.species,
       jsonObj3.chain.evolves_to[0]?.evolves_to[0]?.species
     ]
