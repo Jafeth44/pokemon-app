@@ -2,47 +2,47 @@
     {
         "id": 1,
         "name": "Kanto",
-        "image": "../../../public/images/regions/1.png"
+        "image": "../../../images/regions/1.png"
 
     },
     {
         "id": 2,
         "name": "Johto",
-        "image": "../../../public/images/regions/2.png"
+        "image": "../../../images/regions/2.png"
     },
     {
         "id": 3,
         "name": "Hoenn",
-        "image": "../../../public/images/regions/3.png"
+        "image": "../../../images/regions/3.png"
     },
     {
         "id": 4,
         "name": "Sinnoh",
-        "image": "../../../public/images/regions/4.png"
+        "image": "../../../images/regions/4.png"
     },
     {
         "id": 5,
         "name": "Unova",
-        "image": "../../../public/images/regions/5.png"
+        "image": "../../../images/regions/5.png"
     },
     {
         "id": 5,
         "name": "Kalos",
-        "image": "../../../public/images/regions/6.png"
+        "image": "../../../images/regions/6.png"
     },
     {
         "id": 7,
         "name": "Alola",
-        "image": "../../../public/images/regions/7.png"
+        "image": "../../../images/regions/7.png"
     },
     {
         "id": 8,
         "name": "Galar",
-        "image": "../../../public/images/regions/8.png"
+        "image": "../../../images/regions/8.png"
     },
     {
         "id": 9,
         "name": "Paldea",
-        "image": "../../../public/images/regions/10.png"
+        "image": "../../../images/regions/10.png"
     }
 ]

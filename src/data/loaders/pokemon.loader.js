@@ -6,6 +6,5 @@ export const pokemonLoader = async({params}) => {
   const res1 = await url1.json();
   const res2 = await url2.json();
   const data = await pokemonMapper(res1, res2);
-  console.log(data);
   return data;
 }
