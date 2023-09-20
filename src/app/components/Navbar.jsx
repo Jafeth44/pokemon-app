@@ -1,11 +1,27 @@
-import {  AppBar,  Avatar,  Button,  IconButton,  MenuItem,  Toolbar,  Tooltip,  Typography,  Menu,  Divider,  ListItemIcon} from "@mui/material";
+import {
+  AppBar,
+  Avatar,
+  Button,
+  IconButton,
+  MenuItem,
+  Toolbar,
+  Tooltip,
+  Typography,
+  Menu,
+  Divider,
+  ListItemIcon,
+} from "@mui/material";
 import IconPokeball from "./pokeball";
 import { Logout, Settings, Menu as MenuIcon } from "@mui/icons-material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "./../../store/slices/authSlice";
+import { store } from "../../store/store";
 
 export const Navbar = () => {
-
+  const isLoggedIn = store.getState().auth.isLoggedIn;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -27,40 +43,48 @@ export const Navbar = () => {
             justifyContent: "space-between",
             alignItems: "center",
           }}>
-          <IconButton color="inherit" size="large">
-            <MenuIcon />
-          </IconButton>
-          <Tooltip title={'Regresar al inicio'}>
-
-          <Button
-            container
-            justifyContent={"center"}
-            alignItems={"center"}
-            width={"fit-content"}
-            color="inherit"
-            onClick={() => navigate('/')}
-            >
-            <IconPokeball />
-            <Typography variant="h6" textTransform={'none'}>Pokémon App</Typography>
-          </Button>
-          </Tooltip>
-          <Tooltip title={"Account settings"}>
+          {isLoggedIn && (
+            <IconButton color="inherit" size="large">
+              <MenuIcon />
+            </IconButton>
+          )}
+          <Tooltip title={"Regresar al inicio"}>
             <Button
-              onClick={handleClick}
+              container
+              justifyContent={"center"}
+              alignItems={"center"}
+              width={"fit-content"}
               color="inherit"
-              sx={{
-                width: "max-content",
-                padding: "none",
-                margin: "none",
-                marginLeft: "auto",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}>
-                <Typography sx={{display: {xs: 'none', sm: 'block'}}} textTransform={'none'}>nombre usuario</Typography>
-              <Avatar sx={{ marginLeft: "3px" }} />
+              onClick={() => navigate("/")}>
+              <IconPokeball />
+              <Typography variant="h6" textTransform={"none"}>
+                Pokémon App
+              </Typography>
             </Button>
           </Tooltip>
+          {isLoggedIn && (
+            <Tooltip title={"Account settings"}>
+              <Button
+                onClick={handleClick}
+                color="inherit"
+                sx={{
+                  width: "max-content",
+                  padding: "none",
+                  margin: "none",
+                  marginLeft: "auto",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}>
+                <Typography
+                  sx={{ display: { xs: "none", sm: "block" } }}
+                  textTransform={"none"}>
+                  nombre usuario
+                </Typography>
+                <Avatar sx={{ marginLeft: "3px" }} />
+              </Button>
+            </Tooltip>
+          )}
         </Toolbar>
       </AppBar>
 
@@ -94,7 +118,11 @@ export const Navbar = () => {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem
+          onClick={() => {
+            dispatch(logout());
+            navigate("/auth");
+          }}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

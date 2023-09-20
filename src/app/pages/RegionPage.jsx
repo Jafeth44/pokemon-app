@@ -5,6 +5,7 @@ export const RegionPage = () => {
   const { name, pokemonEntries } = useLoaderData();
   const navigate = useNavigate();
 
+
   return (
     <>
       <Grid
