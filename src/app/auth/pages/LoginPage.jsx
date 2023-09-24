@@ -39,21 +39,24 @@ export const LoginPage = () => {
   }
 
 
-
   return (
     <>
       <h1>LoginPage</h1>
-      <form onSubmit={handleSubmit}>
         <Grid
           container
           flexDirection={"column"}
-          height={400}
-          justifyContent={"space-between"}>
-          <Grid item>
+          alignItems={'center'}
+          width={'300px'}
+          gap={3}
+          justifyContent={'center'}>
+          <Grid item xs={12} width={'100%'}>
             <TextField
-              label="Email"
+              label="Correo electrónico"
               type="text"
               fullWidth
+              autoFocus
+              error={isError && content.type == 'email'}
+              helperText={isError && content.type == 'email' && content.message || ' '}
               onChange={(e) => {
                 setInputChange(e);
               }}
@@ -61,11 +64,13 @@ export const LoginPage = () => {
               name="email"
             />
           </Grid>
-          <Grid item>
+          <Grid item width={'100%'}>
             <TextField
               label="Contraseña"
               type="password"
               fullWidth
+              error={isError && content.type == 'password'}
+              helperText={isError && content.type == 'password' && content.message || ' '}
               onChange={(e) => {
                 setInputChange(e);
               }}
@@ -73,7 +78,7 @@ export const LoginPage = () => {
               name="password"
             />
           </Grid>
-          <Button type="submit">
+          <Button onClick={handleSubmit} fullWidth variant="contained">
             {
               isLoading ?
               <CircularProgress /> :
@@ -88,7 +93,6 @@ export const LoginPage = () => {
             </LinkStyle>
           </Typography>
         </Grid>
-      </form>
     </>
   );
 };

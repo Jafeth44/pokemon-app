@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {authSlice} from "./slices/authSlice";
 import _ from 'lodash';
-import { loadState, saveState } from "./localStorage";
+import { loadState, saveState } from "./helpers/localStorage";
 import { userApi } from "./services/users.service";
 
 export const store = configureStore({

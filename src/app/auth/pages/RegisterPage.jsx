@@ -1,10 +1,12 @@
 import { Button, Grid, TextField, Typography, Link as LinkStyle} from "@mui/material";
 // import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
 import validator from "validator";
 import { useState } from "react";
 import { useRegisterUserMutation } from "../../../store/services/users.service";
+import { useDispatch } from "react-redux";
+import { login } from "../../../store/slices/authSlice";
 
 const formData = {
   name: "",
@@ -13,10 +15,20 @@ const formData = {
 };
 
 export const RegisterPage = () => {
-  
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { name, email, password, setInputChange, formState } = useForm(formData);
-  const [handleRegister, {data: registerStatus, status}] = useRegisterUserMutation();
+  const [registerUser, {data, error, isLoading, isError, isSuccess}] = useRegisterUserMutation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    registerUser(formState);
+  }
+
+  const handleLogin = (payload) => {
+    dispatch(login(payload));
+    navigate('/');
+  } 
 
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
@@ -31,9 +43,14 @@ export const RegisterPage = () => {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleRegister(formState);
+  let content;
+  if (isLoading) {
+    content = 'loading'
+  } else if(isError) {
+    content = error.data;
+  } else if (isSuccess) {
+    content = data;
+    handleLogin(content);
   }
 
   return (
@@ -96,6 +113,7 @@ export const RegisterPage = () => {
           </Grid>
           <Button
             type="submit"
+            variant="contained"
             // onClick={() => {
             //   dispatch(login());
             //   navigate("/");
