@@ -1,9 +1,4 @@
-import {
-  Grid,
-  Typography,
-  Box,
-  ButtonBase
-} from "@mui/material";
+import {Grid, Typography, ButtonBase} from "@mui/material";
 import { styled } from '@mui/material/styles'
 import regions from "../../data/models/regions.json";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +9,6 @@ export const LandingPage = () => {
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     height: 300,
-    margin: 18,
     [theme.breakpoints.down('sm')]: {
       width: '100% !important',
       height: 100
@@ -39,7 +33,6 @@ export const LandingPage = () => {
     right: 0,
     top: 0,
     bottom: 0,
-    margin: 1,
     backgroundSize: 'cover',
     backgroundPosition: 'center 40%',
   });
@@ -62,7 +55,6 @@ export const LandingPage = () => {
     right: 0,
     top: 0,
     bottom: 0,
-    margin: 1,
     backgroundColor: theme.palette.common.black,
     opacity: 0.2,
     transition: theme.transitions.create('opacity'),
@@ -85,8 +77,9 @@ export const LandingPage = () => {
         spacing={{ xs: 1, sm: 1 }}
         p={{ xs: 1, sm: 1 }}
         justifyContent={"center"}
+        gap={2}
         maxWidth={"1400px"}>
-        <Grid item xs={12} marginBottom={2}>
+        <Grid item xs={12} >
           <Typography variant="h3" textAlign={"center"}>
             ¡Bienvenido a la Pokémon App!
           </Typography>
@@ -97,7 +90,6 @@ export const LandingPage = () => {
         </Grid>
         {regions.map((region) => (
           <Grid item key={region.id} xs={12} sm={6} md={3} lg={12 / 5}>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%'}}>
               <ImageButton
                 focusRipple
                 key={region.name}
@@ -125,7 +117,6 @@ export const LandingPage = () => {
                   </Typography>                
                 </Image> 
               </ImageButton>
-            </Box>
           </Grid>
         ))}
       </Grid>

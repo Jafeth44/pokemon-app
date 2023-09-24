@@ -30,6 +30,7 @@ export const RegionPage = () => {
   const gridStyle2 = isSearching2
   ? {
     position: 'relative',
+    // top : {sx: '250px', sm: '300px'}
     top: '-324px',
     marginTop: '412px'
   }
@@ -45,6 +46,7 @@ export const RegionPage = () => {
         justifyContent="space-between"
         alignItems="center"
         marginTop={1}
+        // con style no, use sx={...}
         style={gridStyle1}>
         <Grid item>
           <Typography variant="h4" textTransform="capitalize">{name}</Typography>
