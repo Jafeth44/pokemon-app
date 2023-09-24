@@ -1,7 +1,6 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Card, CardActionArea, CardContent, CardMedia, Grid, IconButton, Typography } from "@mui/material";
-import Paper from '@mui/material/Paper';
-import InputBase from "@mui/material/InputBase";
+import { Paper, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search'
 import { useState } from "react";
 
@@ -9,8 +8,32 @@ export const RegionPage = () => {
   const { name, pokemonEntries } = useLoaderData();
   const navigate = useNavigate();
   const [searchName, setSearchName] = useState('');
+  const [isSearching1, setIsSearching1] = useState(false);
+  const [isSearching2, setIsSearching2] = useState(false);
   const filterPoke = pokemonEntries.filter((poke) => poke.name.toLowerCase().includes(searchName.toLowerCase()));
-  const handleSearch = (e) => {setSearchName(e.target.value)};
+  
+  const handleSearch = (e) => {
+    const newValue = e.target.value;
+    setSearchName(newValue);
+    setIsSearching1(newValue !== '');
+    setIsSearching2(newValue !== '');
+  };
+
+  const gridStyle1 =  isSearching1 
+  ? {
+    position: 'absolute',
+    top: '64px',
+    height: '64px'
+    }
+  : null;
+
+  const gridStyle2 = isSearching2
+  ? {
+    position: 'relative',
+    top: '-324px',
+    marginTop: '412px'
+  }
+  : null
 
   return (
     <>
@@ -22,7 +45,7 @@ export const RegionPage = () => {
         justifyContent="space-between"
         alignItems="center"
         marginTop={1}
-      >
+        style={gridStyle1}>
         <Grid item>
           <Typography variant="h4" textTransform="capitalize">{name}</Typography>
         </Grid>
@@ -36,8 +59,7 @@ export const RegionPage = () => {
               placeholder="Buscar por Pokémon"
               inputProps={{ 'aria-label': 'Buscar por Pokémon' }}
               value={searchName}
-              onChange={handleSearch}
-            />
+              onChange={handleSearch}/>
             <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
               <SearchIcon />
             </IconButton>
@@ -50,7 +72,7 @@ export const RegionPage = () => {
         spacing={{ xs: 2, sm: 2 }}
         p={{ xs: 2, sm: 2 }}
         maxWidth={"1400px"}
-      >
+        style={gridStyle2}>
         {filterPoke.map((poke) => (
           <Grid item key={poke.id} xs={4} sm={3} md={2} lg={2}>
             <Card sx={{ boxShadow: 3 }}>
@@ -59,15 +81,13 @@ export const RegionPage = () => {
                   component="img"
                   height={{ xs: "140", sm: "240" }}
                   image={poke.img}
-                  alt={`image of the pokémon ${poke.name}`}
-                />
+                  alt={`image of the pokémon ${poke.name}`}/>
                 <CardContent sx={{ p: '0' }}>
                   <Typography
                     variant="h6"
                     fontSize={{ xs: "1.1rem", sm: "1.3rem" }}
                     textTransform="capitalize"
-                    textAlign="center"
-                  >
+                    textAlign="center">
                     {poke.name}
                   </Typography>
                 </CardContent>
