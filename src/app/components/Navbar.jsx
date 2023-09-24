@@ -1,30 +1,23 @@
-import {
-  AppBar,
-  Avatar,
-  Button,
-  IconButton,
-  MenuItem,
-  Toolbar,
-  Tooltip,
-  Typography,
-  Menu,
-  Divider,
-  ListItemIcon,
-} from "@mui/material";
+import { AppBar, Avatar, Button, IconButton, MenuItem, Toolbar, Tooltip, Typography, Menu, Divider, ListItemIcon} from "@mui/material";
 import IconPokeball from "./pokeball";
 import { Logout, Settings, Menu as MenuIcon } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./../../store/slices/authSlice";
-import { store } from "../../store/store";
 
 export const Navbar = () => {
-  const isLoggedIn = store.getState().auth.isLoggedIn;
+  const {isLoggedIn, name} = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [login, setLogin] = useState(false);
+
+  useEffect(() => {
+    if (isLoggedIn) 
+      setLogin(true)
+  },[isLoggedIn])
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,7 +36,7 @@ export const Navbar = () => {
             justifyContent: "space-between",
             alignItems: "center",
           }}>
-          {isLoggedIn && (
+          {login && (
             <IconButton color="inherit" size="large">
               <MenuIcon />
             </IconButton>
@@ -62,7 +55,7 @@ export const Navbar = () => {
               </Typography>
             </Button>
           </Tooltip>
-          {isLoggedIn && (
+          {login && (
             <Tooltip title={"Account settings"}>
               <Button
                 onClick={handleClick}
@@ -78,8 +71,8 @@ export const Navbar = () => {
                 }}>
                 <Typography
                   sx={{ display: { xs: "none", sm: "block" } }}
-                  textTransform={"none"}>
-                  nombre usuario
+                  textTransform={"capitalize"}>
+                  {name}
                 </Typography>
                 <Avatar sx={{ marginLeft: "3px" }} />
               </Button>

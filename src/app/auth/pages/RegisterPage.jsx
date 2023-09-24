@@ -1,10 +1,10 @@
-import { Button, Grid, TextField, Typography, Link as LinkStyle, Input} from "@mui/material";
-import { useDispatch } from "react-redux";
-import { login } from "../../../store/slices/authSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Button, Grid, TextField, Typography, Link as LinkStyle} from "@mui/material";
+// import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
 import validator from "validator";
 import { useState } from "react";
+import { useRegisterUserMutation } from "../../../store/services/users.service";
 
 const formData = {
   name: "",
@@ -13,10 +13,10 @@ const formData = {
 };
 
 export const RegisterPage = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  
 
-  const { name, email, password, setInputChange, formState, setResetForm } = useForm(formData);
+  const { name, email, password, setInputChange, formState } = useForm(formData);
+  const [handleRegister, {data: registerStatus, status}] = useRegisterUserMutation();
 
   const [invalidEmail, setInvalidEmail] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
@@ -33,8 +33,7 @@ export const RegisterPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({formState});
-    setResetForm()
+    handleRegister(formState);
   }
 
   return (
