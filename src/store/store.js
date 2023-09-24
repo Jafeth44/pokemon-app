@@ -19,6 +19,5 @@ export const store = configureStore({
 store.subscribe(_.throttle(() => {
   saveState({
     auth: store.getState().auth,
-    // userAuth: store.getState().userAuth
   });
 }, 1000));

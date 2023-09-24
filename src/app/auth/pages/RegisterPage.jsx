@@ -1,4 +1,4 @@
-import { Button, Grid, TextField, Typography, Link as LinkStyle} from "@mui/material";
+import { Button, Grid, TextField, Typography, Link as LinkStyle, Input, FormControl, InputLabel} from "@mui/material";
 // import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "../hooks/useForm";
@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRegisterUserMutation } from "../../../store/services/users.service";
 import { useDispatch } from "react-redux";
 import { login } from "../../../store/slices/authSlice";
+import { FileUpload } from "@mui/icons-material";
 
 const formData = {
   name: "",
@@ -111,6 +112,15 @@ export const RegisterPage = () => {
               name="password"
             />
           </Grid>
+          {/* <Grid item>
+            <InputLabel>
+              <Input 
+                type="file"
+                onChange={setInputChange}
+                inputComponent={"picture"}
+              />
+            </InputLabel>
+          </Grid> */}
           <Button
             type="submit"
             variant="contained"
