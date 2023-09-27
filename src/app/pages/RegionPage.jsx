@@ -11,6 +11,7 @@ export const RegionPage = () => {
   const [isSearching1, setIsSearching1] = useState(false);
   const [isSearching2, setIsSearching2] = useState(false);
   const filterPoke = pokemonEntries.filter((poke) => poke.name.toLowerCase().includes(searchName.toLowerCase()));
+  const [imgLoad, setImgLoad] = useState(false);
   
   const handleSearch = (e) => {
     const newValue = e.target.value;
@@ -48,13 +49,13 @@ export const RegionPage = () => {
         marginTop={1}
         // con style no, use sx={...}
         style={gridStyle1}>
-        <Grid item>
+        <Grid item xs={12} sm={3}>
           <Typography variant="h4" textTransform="capitalize">{name}</Typography>
         </Grid>
-        <Grid item>
+        <Grid item xs={12} sm={9} md={6}>
           <Paper
             component='form'
-            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: {xs: '100%' } }}
           >
             <InputBase
               sx={{ ml: 1, flex: 1 }}
@@ -70,6 +71,7 @@ export const RegionPage = () => {
       </Grid>
 
       <Grid
+        className="animate__animated animate__fadeIn animate__faster"
         container
         spacing={{ xs: 2, sm: 2 }}
         p={{ xs: 2, sm: 2 }}
@@ -81,9 +83,23 @@ export const RegionPage = () => {
               <CardActionArea onClick={() => navigate(`/pokemon/${poke.id}`, { relative: true })}>
                 <CardMedia
                   component="img"
+                  className="animate__animated animate__fadeIn"
+                  onLoad={() => setTimeout(() => {
+                    setImgLoad(true)
+                  }, 500)}
                   height={{ xs: "140", sm: "240" }}
                   image={poke.img}
-                  alt={`image of the pokémon ${poke.name}`}/>
+                  alt={`image of the pokémon ${poke.name}`}
+                  sx={imgLoad ? '' : {display: 'none'}}
+                />
+                <CardMedia
+                className="animate__animated animate__fadeIn"
+                  component="img"
+                  height={{ xs: "140", sm: "240" }}
+                  image={'/images/loader.svg'}
+                  alt={`image of the pokémon ${poke.name}`}
+                  sx={imgLoad ? {display: 'none'} : ''}
+                />
                 <CardContent sx={{ p: '0' }}>
                   <Typography
                     variant="h6"

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 export const LandingPage = () => {
   const navigate = useNavigate();
-
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     height: 300,
@@ -73,13 +72,14 @@ export const LandingPage = () => {
   return (
     <>
       <Grid
+        className="animate__animated  animate__fadeIn animate__faster"
         container
         spacing={{ xs: 1, sm: 1 }}
         p={{ xs: 1, sm: 1 }}
         justifyContent={"center"}
         gap={2}
         maxWidth={"1400px"}>
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <Typography variant="h3" textAlign={"center"}>
             ¡Bienvenido a la Pokémon App!
           </Typography>

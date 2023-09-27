@@ -40,7 +40,7 @@ export const RegisterPage = () => {
 
   const handleInvalidPassword = () => {
     setInvalidPassword(
-      password.length > 5 //&& !validator.isStrongPassword(password)
+      password.length < 6 //&& !validator.isStrongPassword(password)
     );
   };
 

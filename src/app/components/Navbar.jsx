@@ -35,6 +35,7 @@ export const Navbar = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            padding: '0 0',
           }}>
           {login && (
             <IconButton color="inherit" size="large">
