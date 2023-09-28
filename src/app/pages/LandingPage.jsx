@@ -2,9 +2,26 @@ import {Grid, Typography, ButtonBase} from "@mui/material";
 import { styled } from '@mui/material/styles'
 import regions from "../../data/models/regions.json";
 import { useNavigate } from "react-router-dom";
+import { useGetPokeFavListMutation } from "../../store/services/pokemon.service";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavorites } from "../../store/slices/favoritesSlice";
 
 export const LandingPage = () => {
   const navigate = useNavigate();
+  const userId = useSelector(state => state.auth.uid);
+  const [getFavorites] = useGetPokeFavListMutation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    
+    getFavorites({"userId": userId}).unwrap().then(payload => dispatch(setFavorites(payload)))
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  
+
+
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     height: 300,

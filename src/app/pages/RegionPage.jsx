@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Card, CardActionArea, CardContent, CardMedia, Grid, IconButton, Typography } from "@mui/material";
 import { Paper, InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search'
 import { useState } from "react";
+import { Star, StarBorder } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 export const RegionPage = () => {
   const { name, pokemonEntries } = useLoaderData();
@@ -12,7 +15,10 @@ export const RegionPage = () => {
   const [isSearching2, setIsSearching2] = useState(false);
   const filterPoke = pokemonEntries.filter((poke) => poke.name.toLowerCase().includes(searchName.toLowerCase()));
   const [imgLoad, setImgLoad] = useState(false);
-  
+  const postList = useSelector(state => state.favorites.postList);
+
+  console.log({postList});
+
   const handleSearch = (e) => {
     const newValue = e.target.value;
     setSearchName(newValue);
@@ -79,8 +85,13 @@ export const RegionPage = () => {
         style={gridStyle2}>
         {filterPoke.map((poke) => (
           <Grid item key={poke.id} xs={4} sm={3} md={2} lg={2}>
-            <Card sx={{ boxShadow: 3 }}>
+            <Card sx={{ boxShadow: 3 , position: 'relative'}}>
               <CardActionArea onClick={() => navigate(`/pokemon/${poke.id}`, { relative: true })}>
+                {
+                  postList.filter(pokemon => pokemon.pokemonId === poke.id)[0] && postList[0].isFavorite
+                  ? <Star sx={{position: 'absolute', right: '0'}} color="warning"/>
+                  : <StarBorder sx={{position: 'absolute', right: '0'}}/>
+                }
                 <CardMedia
                   component="img"
                   className="animate__animated animate__fadeIn"
