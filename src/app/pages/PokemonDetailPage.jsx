@@ -40,6 +40,7 @@ export const PokemonDetailPage = () => {
                 flexBasis: "50%",
               }}>
               <Typography>{name}</Typography>
+              <Typography>{flavorText}</Typography>
             </CardContent>
           </Card>
         </Grid>
