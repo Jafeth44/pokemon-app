@@ -10,7 +10,6 @@ const Root = styled('div')(({ theme }) => ({
   width: '100%',
   ...theme.typography.body2,
   '& > :not(style) ~ :not(style)': {
-    marginTop: theme.spacing(1),
   },
 }));
 
@@ -19,7 +18,8 @@ export const Footer = () => {
       <Grid
         container
         alignItems={'center'}
-        justifyContent={'center'}>
+        justifyContent={'center'}
+        p={{ xs: 1, sm: 1 }}>
 
         <Grid
           container
