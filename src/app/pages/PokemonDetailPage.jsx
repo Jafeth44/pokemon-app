@@ -7,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
 
 export const PokemonDetailPage = () => {
   const { name, img, types, abilities, flavorText } = useLoaderData();
@@ -40,6 +41,11 @@ export const PokemonDetailPage = () => {
                 flexBasis: "50%",
               }}>
               <Typography>{name}</Typography>
+              {
+                types.map((type, id) => (
+                  <PokemonTypeIcon pokemonType={type} key={id}/>
+                ))
+              }
               <Typography>{flavorText}</Typography>
             </CardContent>
           </Card>
