@@ -94,7 +94,7 @@ export const LandingPage = () => {
         spacing={{ xs: 1, sm: 1 }}
         p={{ xs: 1, sm: 1 }}
         justifyContent={"center"}
-        gap={2}
+        // gap={'2'}
         maxWidth={"1400px"}>
         <Grid item xs={12}>
           <Typography variant="h3" textAlign={"center"}>
@@ -110,8 +110,8 @@ export const LandingPage = () => {
               <ImageButton
                 focusRipple
                 key={region.name}
-                style={{
-                  width: '95%'
+                sx={{
+                  width: '100%'
                 }}
                 onClick={() => navigate(`/region/${region.id}`)}>
 

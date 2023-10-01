@@ -26,7 +26,7 @@ export const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser(formState);
+    loginUser(formState).unwrap().then((data) => console.log(data))
   };
 
   const handleLogin = (payload) => {
@@ -61,7 +61,7 @@ export const LoginPage = () => {
               type="text"
               fullWidth
               autoFocus
-              error={isError && content.type == "email"}
+              // error={isError && content.type == "email"}
               helperText={
                 (isError && content.type == "email" && content.message) || " "
               }
@@ -77,7 +77,7 @@ export const LoginPage = () => {
               label="Contraseña"
               type="password"
               fullWidth
-              error={isError && content.type == "password"}
+              // error={isError && content?.type == "password"}
               helperText={
                 (isError && content.type == "password" && content.message) ||
                 " "

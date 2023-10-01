@@ -128,6 +128,13 @@ export const RegionPage = () => {
                   />
                   <CardContent sx={{ p: "0" }}>
                     <Typography
+                      variant="subtitle2"
+                      fontSize={{ xs: "0.6rem", sm: "0.8rem" }}
+                      textTransform="capitalize"
+                      textAlign="center">
+                      N° {poke.id.padStart(4, '0')}
+                    </Typography>
+                    <Typography
                       variant="h6"
                       fontSize={{ xs: "1.1rem", sm: "1.3rem" }}
                       textTransform="capitalize"

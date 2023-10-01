@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -6,15 +7,17 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
 
 export const PokemonDetailPage = () => {
-  const { name, img, types, abilities, flavorText } = useLoaderData();
+  const { name, img, types, abilities, flavorText, id } = useLoaderData();
   const navigate = useNavigate();
 
   return (
     <>
+    <Button onClick={() => navigate(`/pokemon/${id-1}`)} disabled={id == '1' ? true : false}>Prev</Button>
+    <Button onClick={() => navigate(`/pokemon/${id+1}`)} disabled={id == '1017' ?  true : false}>Next</Button>
       <Grid
         className="animate__animated animate__fadeIn faster"
         container
