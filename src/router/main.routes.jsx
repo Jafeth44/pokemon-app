@@ -37,11 +37,8 @@ export const mainRouter = createBrowserRouter([
       {
         path: "/pokemon/:pokemonId",
         element: <PokemonDetailPage />,
-        loader: ({params}) => {
-          pokemonLoader({params})
-          
-        },
-      },
+        loader: pokemonLoader,
+      }
     ],
     
   },
