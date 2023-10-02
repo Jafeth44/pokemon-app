@@ -13,6 +13,8 @@ export const pokemonMapper = async(jsonObj1, jsonObj2) => {
     abilities: [...ability],
     types: [...type],
     stats,
+    weight,
+    height
   } = jsonObj2;
 
   const getEvolutionChain = async() => {
@@ -29,6 +31,8 @@ export const pokemonMapper = async(jsonObj1, jsonObj2) => {
     name,
     id,
     stats,
+    weight,
+    height,
     flavorText: flavor_text,
     img: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id.toString().padStart(3, '0')}.png`,
     abilities: ability.map(({ability}) => (ability.name)),

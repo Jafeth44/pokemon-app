@@ -12,7 +12,7 @@ import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
 import { useSelector } from "react-redux";
 
 export const PokemonDetailPage = () => {
-  const { name, img, types, abilities, flavorText, id } = useLoaderData();
+  const { name, img, types, abilities, flavorText, id, weight, height } = useLoaderData();
   const navigate = useNavigate();
   console.log(useLoaderData());
   return (
@@ -66,7 +66,14 @@ export const PokemonDetailPage = () => {
               }
               <Typography marginY={2}>{flavorText}</Typography>
               <Card>
+                <Typography>Altura: {(height * 0.1).toFixed(2)} m</Typography>
+                <Typography>Peso: {(weight * 0.1).toFixed(1)} Kg</Typography>
 
+                {
+                  abilities.map((ability, id) => (
+                    <Typography textTransform='capitalize' key={id}>Habilidad {id + 1}: {ability}</Typography>
+                  ))
+                }
               </Card>
             </CardContent>
           </Card>
