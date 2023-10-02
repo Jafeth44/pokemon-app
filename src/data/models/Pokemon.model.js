@@ -1,5 +1,5 @@
 export class Pokemon {
-  constructor({id, name, img, types, abilities, url, flavorText, evolutionLine}) {
+  constructor({id, name, img, types, abilities, url, flavorText, evolutionLine, stats, weight, height}) {
     this.id = id
     this.name = name
     this.img = img
@@ -8,5 +8,9 @@ export class Pokemon {
     this.url = url
     this.flavorText = flavorText
     this.evolutionLine = evolutionLine
+    this.stats = stats
+    this.weight = weight
+    this.height = height
   }
 }
+

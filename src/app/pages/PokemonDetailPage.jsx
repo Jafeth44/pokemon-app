@@ -9,11 +9,13 @@ import {
 } from "@mui/material";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
+import { useSelector } from "react-redux";
 
 export const PokemonDetailPage = () => {
-  const { name, img, types, abilities, flavorText, id } = useLoaderData();
+  const { name, img, types, abilities, flavorText, id, stats } = useLoaderData();
+  const {} = useSelector()
   const navigate = useNavigate();
-
+  console.log(useLoaderData());
   return (
     <>
     <Button onClick={() => navigate(`/pokemon/${id-1}`)} disabled={id == '1' ? true : false}>Prev</Button>
