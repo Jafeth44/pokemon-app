@@ -12,8 +12,7 @@ import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
 import { useSelector } from "react-redux";
 
 export const PokemonDetailPage = () => {
-  const { name, img, types, abilities, flavorText, id, stats } = useLoaderData();
-  const {} = useSelector()
+  const { name, img, types, abilities, flavorText, id } = useLoaderData();
   const navigate = useNavigate();
   console.log(useLoaderData());
   return (
