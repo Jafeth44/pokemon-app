@@ -94,7 +94,7 @@ export const LoginPage = () => {
           </Button>
         </form>
         <Typography textAlign={"center"}>
-          No tiene una cuenta?{" "}
+          ¿No tiene una cuenta?{" "}
           <LinkStyle to={"/auth/register"} component={Link}>
             Registrarse
           </LinkStyle>

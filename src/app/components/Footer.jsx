@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Button } from "@mui/material"
 import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -44,9 +44,17 @@ export const Footer = () => {
           container
           alignItems={'center'}
           justifyContent={'center'}>
-          <Typography sx={{ marginX: 1 }} variant="subtitle2" textTransform={'none'}>Información</Typography>
+          <Button variant="text" color="inherit">
+            <Typography variant="subtitle2">
+              Información
+            </Typography>
+          </Button>
           <Divider sx={{ height: 20, m: 0.5 }} orientation="vertical"/>
-          <Typography sx={{ marginX: 1 }} variant="subtitle2" textTransform={'none'}>Contactenos</Typography>
+          <Button variant="text" color="inherit">
+            <Typography variant="subtitle2">
+              Contactenos
+            </Typography>
+          </Button>
         </Grid>
 
       </Grid>
@@ -67,9 +75,13 @@ export const Footer = () => {
       }}
     >
       <Root>
-        <Divider> 
-          <GitHubIcon sx={{ marginX: 1 }}/>
-          <EmailIcon sx={{ marginX: 1 }}/>
+        <Divider>
+            <Button color="inherit" sx={{marginX: -1}}>
+              <GitHubIcon/>
+            </Button>
+            <Button color="inherit" sx={{marginX: -1}}>
+              <EmailIcon/>
+            </Button>
         </Divider>
         {content}
       </Root>

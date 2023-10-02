@@ -40,7 +40,8 @@ export const RegionPage = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginY: 2
       }}>
         <Grid
           container
@@ -49,8 +50,6 @@ export const RegionPage = () => {
           alignItems="center"
           p={2}
           width={'100%'}
-          // con style no, use sx={...}
-          // style={gridStyle1}
         >
           <Grid item xs={12} sm={3} width={'100%'}>
             <Typography variant="h4" textTransform="capitalize">
@@ -61,7 +60,6 @@ export const RegionPage = () => {
             <Paper
               component="form"
               sx={{
-                // p: "2px 4px",
                 display: "flex",
                 alignItems: "center",
                 width: { xs: "100%" },
@@ -132,7 +130,7 @@ export const RegionPage = () => {
                       fontSize={{ xs: "0.6rem", sm: "0.8rem" }}
                       textTransform="capitalize"
                       textAlign="center">
-                      N° {poke.id.padStart(4, '0')}
+                      N.° {poke.id.padStart(4, '0')}
                     </Typography>
                     <Typography
                       variant="h6"

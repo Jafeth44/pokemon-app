@@ -7,8 +7,9 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
+import { Height } from "@mui/icons-material";
 
 export const PokemonDetailPage = () => {
   const { name, img, types, abilities, flavorText, id } = useLoaderData();
@@ -16,8 +17,16 @@ export const PokemonDetailPage = () => {
 
   return (
     <>
-    <Button onClick={() => navigate(`/pokemon/${id-1}`)} disabled={id == '1' ? true : false}>Prev</Button>
-    <Button onClick={() => navigate(`/pokemon/${id+1}`)} disabled={id == '1017' ?  true : false}>Next</Button>
+      <Grid
+        container
+        display={'flex'}
+        justifyContent={'space-between'}
+        p={{ xs: 2, sm: 2 }}
+        maxWidth={"1400px"}
+      >
+          <Button item variant="contained" onClick={() => navigate(`/pokemon/${id - 1}`)} disabled={id == '1' ? true : false}>Anterior</Button>
+          <Button item variant="contained" onClick={() => navigate(`/pokemon/${id + 1}`)} disabled={id == '1017' ?  true : false}>Siguiente</Button>
+      </Grid>
       <Grid
         className="animate__animated animate__fadeIn faster"
         container
@@ -43,13 +52,22 @@ export const PokemonDetailPage = () => {
               sx={{
                 flexBasis: "50%",
               }}>
-              <Typography>{name}</Typography>
+              <Typography 
+                textTransform='capitalize'
+                justifyContent='center'
+                textAlign='center'
+                variant="h4">
+                  {name}
+              </Typography>
               {
                 types.map((type, id) => (
                   <PokemonTypeIcon pokemonType={type} key={id}/>
                 ))
               }
-              <Typography>{flavorText}</Typography>
+              <Typography marginY={2}>{flavorText}</Typography>
+              <Card>
+
+              </Card>
             </CardContent>
           </Card>
         </Grid>
