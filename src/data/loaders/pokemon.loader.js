@@ -1,7 +1,5 @@
-import { store } from "../../store/store";
 import { pokemonMapper } from "../mappings/pokemon.mapper";
 
-const {} = store.dispatch.
 export const pokemonLoader = async({params}) => {
   const url1 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${params.pokemonId}`);
   const url2 = await fetch(`https://pokeapi.co/api/v2/pokemon/${params.pokemonId}`);
