@@ -9,12 +9,13 @@ import {
 } from "@mui/material";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
-import { Height } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 export const PokemonDetailPage = () => {
-  const { name, img, types, abilities, flavorText, id } = useLoaderData();
+  const { name, img, types, abilities, flavorText, id, stats } = useLoaderData();
+  const {} = useSelector()
   const navigate = useNavigate();
-
+  console.log(useLoaderData());
   return (
     <>
       <Grid

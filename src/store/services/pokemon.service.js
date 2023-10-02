@@ -13,8 +13,24 @@ export const pokemonApi = createApi({
         body: payload
       }),
       providesTags: ['Pokemon']
+    }),
+    getPokemonData: builder.mutation({
+      query: (payload) => ({
+        url: 'posts/read',
+        method: 'POST',
+        body: payload,
+      }),
+      providesTags: ['Pokemon']
+    }),
+    setPokemonData: builder.mutation({
+      query: (payload) => ({
+        url: 'posts/new',
+        method: 'POST',
+        body: payload
+      }),
+      invalidatesTags: ['Pokemon']
     })
   })
 }) 
 
-export const {useGetPokeFavListMutation} = pokemonApi;
+export const {useGetPokeFavListMutation, useGetPokemonDataMutation, useSetPokemonDataMutation} = pokemonApi;
