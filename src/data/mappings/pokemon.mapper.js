@@ -33,7 +33,7 @@ export const pokemonMapper = async(jsonObj1, jsonObj2) => {
     stats,
     weight,
     height,
-    flavorText: flavor_text,
+    flavorText: flavor_text === undefined ? 'No se encontró texto de la Pokédex en español' : flavor_text,
     img: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id.toString().padStart(3, '0')}.png`,
     abilities: ability.map(({ability}) => (ability.name)),
     types: type.map(({type}) => (type.name)),
