@@ -95,7 +95,7 @@ export const RegionPage = () => {
                   }>
                   {postList.filter(
                     (pokemon) => pokemon.pokemonId === poke.id
-                  )[0] && postList[0].isFavorite ? (
+                  )[0]?.isFavorite === true ? (
                     <Star
                       sx={{ position: "absolute", right: "0" }}
                       color="warning"
