@@ -1,26 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  IconButton,
-  TextField,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {Box, Button, Card, CardContent, CardMedia, Grid, IconButton, TextField, Tooltip, Typography} from "@mui/material";
+import {useGetPokemonDataMutation, useSetPokemonDataMutation} from "../../store/services/pokemon.service";
 import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
-import { useSelector } from "react-redux";
-import {
-  useGetPokemonDataMutation,
-  useSetPokemonDataMutation,
-} from "../../store/services/pokemon.service";
-import { useEffect, useState } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { Save, Star, StarBorder } from "@mui/icons-material";
 import RadarChart from "react-svg-radar-chart";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "../../theme/chart.css";
 
 const pokemonPageState = {

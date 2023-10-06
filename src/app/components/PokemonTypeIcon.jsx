@@ -11,6 +11,7 @@ export const PokemonTypeIcon = ({pokemonType}) => {
       avatar={<Avatar src={`/images/elemental-types/${type}.svg`}/>}
       label={tipo}
       sx={{
+        color: 'white',
         backgroundColor: color,
         textTransform: 'capitalize',
         margin: '3px' //! no me cuadra esto, luego lo cambio
