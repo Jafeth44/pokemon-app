@@ -48,7 +48,7 @@ export const RegionPage = () => {
           maxWidth={"1400px"}
           justifyContent="space-between"
           alignItems="center"
-          p={2}
+          p={3}
           width={'100%'}
         >
           <Grid item xs={12} sm={3} width={'100%'}>

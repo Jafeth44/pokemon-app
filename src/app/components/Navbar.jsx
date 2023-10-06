@@ -2,10 +2,12 @@ import { AppBar, Avatar, Button, IconButton, MenuItem, Toolbar, Tooltip, Typogra
 import { Drawer, Box } from '@mui/material';
 import IconPokeball from "./pokeball";
 import { Logout, Settings, Menu as MenuIcon, Star } from "@mui/icons-material";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./../../store/slices/authSlice";
+import regions from '../../data/models/regions.json'
 
 export const Navbar = () => {
   const {isLoggedIn, name} = useSelector(state => state.auth);
@@ -55,14 +57,28 @@ export const Navbar = () => {
                   </Typography>
                 </Box>
                 <Divider/>
-                <Box p={1} width='300px' textAlign='left' marginY={2}>
+                <Box width='300px' textAlign='left' marginY={2}>
                   <Button>
                     <Star/>
-                    <Typography variant="subtitle2" component='div' marginX={2}>
+                    <Typography variant="subtitle1" textTransform='capitalize' marginX={1}>
                       Pokémones favoritos
                     </Typography>
                   </Button>
-                  
+                </Box>
+                <Divider/>
+                <Box width='300px' textAlign='center' role='presentation' marginY={2}>
+                  <Typography variant="h6">
+                    Regiones
+                  </Typography>
+                  {regions.map((region) => (
+                    <Box key={region.id} textAlign='left'>
+                      <Button
+                        onClick={() => navigate(`/region/${region.id}`)}>
+                        <KeyboardArrowRightIcon/>
+                        <Typography variant="subtitle1" textTransform='capitalize'>{region.name}</Typography>
+                      </Button>
+                    </Box>
+                  ))}
                 </Box>
               </Drawer>
           </>                

@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 import regions from "../../data/models/regions.json";
 import { useNavigate } from "react-router-dom";
 import { useGetPokeFavListMutation } from "../../store/services/pokemon.service";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavorites } from "../../store/slices/favoritesSlice";
 
