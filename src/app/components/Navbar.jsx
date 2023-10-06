@@ -1,16 +1,37 @@
-import { AppBar, Avatar, Button, IconButton, MenuItem, Toolbar, Tooltip, Typography, Menu, Divider, ListItemIcon } from "@mui/material";
-import { Drawer, Box } from '@mui/material';
+import {
+  AppBar,
+  Avatar,
+  Button,
+  IconButton,
+  MenuItem,
+  Toolbar,
+  Tooltip,
+  Typography,
+  Menu,
+  Divider,
+  ListItemIcon,
+  List,
+  ListItem,
+} from "@mui/material";
+import { Drawer, Box } from "@mui/material";
 import IconPokeball from "./pokeball";
-import { Logout, Settings, Menu as MenuIcon, Star } from "@mui/icons-material";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import {
+  Logout,
+  Menu as MenuIcon,
+  Bookmark,
+  Landscape,
+} from "@mui/icons-material";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "./../../store/slices/authSlice";
-import regions from '../../data/models/regions.json'
+import regions from "../../data/models/regions.json";
+import pokemonNames from "../../data/models/pokemon.json";
 
 export const Navbar = () => {
-  const {isLoggedIn, name} = useSelector(state => state.auth);
+  const { isLoggedIn, name } = useSelector((state) => state.auth);
+  const { postList } = useSelector((state) => state.favorites);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -18,9 +39,8 @@ export const Navbar = () => {
   const [login, setLogin] = useState(false);
 
   useEffect(() => {
-    if (isLoggedIn) 
-      setLogin(true)
-  },[isLoggedIn])
+    if (isLoggedIn) setLogin(true);
+  }, [isLoggedIn]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -40,48 +60,105 @@ export const Navbar = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: '0 0',
+            padding: "0 0",
           }}>
-          
-          <>
-            <IconButton color="inherit" size="large" onClick={() => setIsDrawerOpen(true)}>
-              <MenuIcon />
-            </IconButton>
+          {login && (
+            <>
+              <IconButton
+                color="inherit"
+                size="large"
+                onClick={() => setIsDrawerOpen(true)}>
+                <MenuIcon />
+              </IconButton>
               <Drawer
                 anchor="left"
                 open={isDrawerOpen}
                 onClose={() => setIsDrawerOpen(false)}>
-                <Box p={2} width='300px' textAlign='center' role='presentation'>
-                  <Typography variant="h6" component='div'>
+                <Box
+                  p={1}
+                  width="300px"
+                  display={"flex"}
+                  alignItems={"center"}
+                  role="presentation">
+                  <IconButton
+                    color="inherit"
+                    size="large"
+                    onClick={() => setIsDrawerOpen(false)}>
+                    <MenuIcon />
+                  </IconButton>
+                  <Typography
+                    variant="h6"
+                    marginLeft={1}
+                    component="div"
+                    flex={1}>
                     Menú principal
                   </Typography>
                 </Box>
-                <Divider/>
-                <Box width='300px' textAlign='left' marginY={2}>
-                  <Button>
-                    <Star/>
-                    <Typography variant="subtitle1" textTransform='capitalize' marginX={1}>
-                      Pokémones favoritos
-                    </Typography>
-                  </Button>
+                <Divider />
+                <Box
+                  p={1}
+                  width="300px"
+                  display={"flex"}
+                  flexDirection={"column"}
+                  alignItems={"center"}
+                  role="presentation">
+                  <Typography
+                    variant="h6"
+                    textTransform="capitalize"
+                    marginLeft={1}>
+                    Pokémones favoritos
+                  </Typography>
+                  <List sx={{ width: "100%" }}>
+                    {postList.map((data) =>
+                      data.isFavorite ? (
+                        <ListItem key={data.pokemonId} sx={{width: '100%'}}>
+                          <Button fullWidth
+                            sx={{ textTransform: "capitalize", fontSize: '1.2rem', margin: 0}}
+                            onClick={() => {
+                              navigate(`/pokemon/${data.pokemonId}`);
+                              setIsDrawerOpen(false);
+                            }}>
+                            <Bookmark sx={{ marginRight: 1 }} />{" "}
+                            {pokemonNames[data.pokemonId - 1].name}
+                          </Button>
+                        </ListItem>
+                      ) : null
+                    )}
+                  </List>
                 </Box>
-                <Divider/>
-                <Box width='300px' textAlign='center' role='presentation' marginY={2}>
-                  <Typography variant="h6">
+                <Divider />
+                <Box
+                  p={1}
+                  width="300px"
+                  display={"flex"}
+                  flexDirection={"column"}
+                  alignItems={"center"}
+                  role="presentation">
+                  <Typography
+                    variant="h6"
+                    textTransform="capitalize"
+                    marginLeft={1}>
                     Regiones
                   </Typography>
-                  {regions.map((region) => (
-                    <Box key={region.id} textAlign='left'>
-                      <Button
-                        onClick={() => navigate(`/region/${region.id}`)}>
-                        <KeyboardArrowRightIcon/>
-                        <Typography variant="subtitle1" textTransform='capitalize'>{region.name}</Typography>
-                      </Button>
-                    </Box>
-                  ))}
+                  <List sx={{ width: "100%" }}>
+                    {regions.map((region) => (
+                      <ListItem key={region.id}>
+                        <Button
+                          fullWidth
+                          sx={{ textTransform: "capitalize", fontSize: '1.2rem', margin: 0 }}
+                          onClick={() => {
+                            navigate(`/region/${region.id}`);
+                            setIsDrawerOpen(false);
+                          }}>
+                          <Landscape sx={{ marginRight: 1 }} /> {region.name}
+                        </Button>
+                      </ListItem>
+                    ))}
+                  </List>
                 </Box>
               </Drawer>
-          </>                
+            </>
+          )}
 
           <Tooltip title={"Regresar al inicio"}>
             <Button
@@ -95,11 +172,11 @@ export const Navbar = () => {
               <Typography variant="h6" textTransform={"none"}>
                 Pokémon App
               </Typography>
-              <Divider/>
+              <Divider />
             </Button>
           </Tooltip>
           {login && (
-            <Tooltip title={"Account settings"}>
+            <Tooltip title={"Cerrar sesión"}>
               <Button
                 onClick={handleClick}
                 color="inherit"
@@ -117,7 +194,12 @@ export const Navbar = () => {
                   textTransform={"capitalize"}>
                   {name}
                 </Typography>
-                <Avatar sx={{ marginLeft: "3px" }} />
+                <Avatar
+                  sx={{
+                    marginLeft: "6px",
+                    backgroundColor: "rgb(81, 108, 156)",
+                  }}
+                />
               </Button>
             </Tooltip>
           )}
@@ -144,16 +226,6 @@ export const Navbar = () => {
             },
           },
         }}>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
         <MenuItem
           onClick={() => {
             dispatch(logout());
@@ -162,7 +234,7 @@ export const Navbar = () => {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          Logout
+          cerrar sesión
         </MenuItem>
       </Menu>
     </>

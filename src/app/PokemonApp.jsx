@@ -16,7 +16,7 @@ export const PokemonApp = () => {
         justifyContent={"center"}
         alignItems={"center"}
         sx={{
-          minHeight: { xs: "calc(100dvh - 106px)", sm: "calc(100dvh - 114px)" },
+          minHeight: { xs: "calc(100dvh - 206px)", sm: "calc(100dvh - 214px)" },
         }}>
             {
               state == "loading" ? (

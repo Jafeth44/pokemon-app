@@ -14,9 +14,14 @@ import {
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { PokemonTypeIcon } from "../components/PokemonTypeIcon";
 import { useSelector } from "react-redux";
-import { useGetPokemonDataMutation, useSetPokemonDataMutation } from "../../store/services/pokemon.service";
+import {
+  useGetPokemonDataMutation,
+  useSetPokemonDataMutation,
+} from "../../store/services/pokemon.service";
 import { useEffect, useState } from "react";
 import { Save, Star, StarBorder } from "@mui/icons-material";
+import RadarChart from "react-svg-radar-chart";
+import "../../theme/chart.css";
 
 const pokemonPageState = {
   isFavorite: false,
@@ -25,13 +30,40 @@ const pokemonPageState = {
 
 export const PokemonDetailPage = () => {
   const navigate = useNavigate();
-  const { name, img, types, abilities, flavorText, id, weight, height } =
+  const { name, img, types, abilities, flavorText, id, weight, height, stats } =
     useLoaderData();
   const { uid } = useSelector((state) => state.auth);
   const [state, setState] = useState(pokemonPageState);
   const { isFavorite, postComment } = state;
   const [getData] = useGetPokemonDataMutation();
   const [setData] = useSetPokemonDataMutation();
+
+  //datos para la shart
+  const data = [
+    {
+      data: {
+        hp: stats[0].base_stat / 220,
+        attk: stats[1].base_stat / 220,
+        spAttk: stats[2].base_stat / 220,
+        def: stats[3].base_stat / 220,
+        spDef: stats[4].base_stat / 220,
+        speed: stats[5].base_stat / 220,
+      },
+      meta: { color: "red" },
+    },
+  ];
+
+  const captions = {
+    // columns
+    hp: "PS",
+    attk: "Ataque",
+    spAttk: "Ataque Esp",
+    def: "Defensa",
+    spDef: "Defensa Esp",
+    speed: "Velocidad",
+  };
+
+  console.log(stats);
 
   const setInputChange = ({ target }) => {
     const { name, value } = target;
@@ -40,29 +72,29 @@ export const PokemonDetailPage = () => {
       [name]: value,
     });
   };
-  
+
   const setSubmitCommend = (e) => {
     e.preventDefault();
     setData({
       pokemonId: id.toString(),
       userId: uid,
-      ...state
-    })
-  }
+      ...state,
+    });
+  };
 
   const setFavorite = () => {
     setState({
       ...state,
-      isFavorite: !isFavorite
-    })
+      isFavorite: !isFavorite,
+    });
     setData({
       pokemonId: id.toString(),
       userId: uid,
       ...state,
-      isFavorite: !isFavorite
-    })
-  }
-  
+      isFavorite: !isFavorite,
+    });
+  };
+
   useEffect(() => {
     getData({ userId: uid, pokemonId: id.toString() })
       .unwrap()
@@ -80,7 +112,9 @@ export const PokemonDetailPage = () => {
         container
         display={"flex"}
         justifyContent={"space-between"}
-        p={{ xs: 2, sm: 2 }}
+        my={1}
+        mt={2}
+        px={1}
         maxWidth={"1000px"}>
         <Button
           item
@@ -100,7 +134,8 @@ export const PokemonDetailPage = () => {
       <Grid
         className="animate__animated animate__fadeIn faster"
         container
-        p={{ xs: 2, sm: 2 }}
+        mb={2}
+        px={1}
         maxWidth={"1000px"}>
         <Grid item xs={12}>
           <Card
@@ -114,8 +149,8 @@ export const PokemonDetailPage = () => {
               image={img}
               alt={`image of the pokemon ${name}`}
               sx={{
-                flexBasis: "50%",
                 maxWidth: { sm: "50%" },
+                objectFit: "contain",
               }}
             />
             <CardContent
@@ -152,15 +187,26 @@ export const PokemonDetailPage = () => {
               <Typography marginY={3} textAlign={"center"} fontStyle={"italic"}>
                 &quot;{flavorText}&quot;
               </Typography>
-              <Card>
-                <Typography>Altura: {(height * 0.1).toFixed(2)} m</Typography>
-                <Typography>Peso: {(weight * 0.1).toFixed(1)} Kg</Typography>
-                {abilities.map((ability, id) => (
-                  <Typography textTransform="capitalize" key={id}>
-                    Habilidad {id + 1}: {ability}
-                  </Typography>
-                ))}
-              </Card>
+              <Grid container display={"flex"} justifyContent={"space-between"}>
+                <Grid
+                  item
+                  xs={6}
+                  display={"flex"}
+                  flexDirection={"column"}
+                  justifyContent={"center"}
+                  alignItems={"flex-start"}>
+                  <Typography>Altura: {(height * 0.1).toFixed(2)} m</Typography>
+                  <Typography>Peso: {(weight * 0.1).toFixed(1)} Kg</Typography>
+                  {abilities.map((ability, id) => (
+                    <Typography textTransform="capitalize" key={id}>
+                      Habilidad {id + 1}: {ability}
+                    </Typography>
+                  ))}
+                </Grid>
+                <Grid item xs={6} display={"flex"} justifyContent={"center"}>
+                  <RadarChart captions={captions} data={data} size={200}/>
+                </Grid>
+              </Grid>
               <Typography mt={1}>Comentario:</Typography>
               <Card sx={{ position: "relative" }} variant="elevation">
                 <form onSubmit={setSubmitCommend}>
@@ -173,17 +219,20 @@ export const PokemonDetailPage = () => {
                     name="postComment"
                     onChange={setInputChange}
                     sx={{
-                      border: 'none'
+                      border: "none",
                     }}
                   />
                   <Tooltip title="Guardar comentario">
-
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ position: "absolute", bottom: "4px", right: "4px" }}>
-                    <Save />
-                  </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      sx={{
+                        position: "absolute",
+                        bottom: "4px",
+                        right: "4px",
+                      }}>
+                      <Save />
+                    </Button>
                   </Tooltip>
                 </form>
               </Card>
