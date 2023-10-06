@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles'
 import regions from "../../data/models/regions.json";
 import { useNavigate } from "react-router-dom";
 import { useGetPokeFavListMutation } from "../../store/services/pokemon.service";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavorites } from "../../store/slices/favoritesSlice";
 
@@ -20,8 +20,6 @@ export const LandingPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
-
-
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     height: 300,

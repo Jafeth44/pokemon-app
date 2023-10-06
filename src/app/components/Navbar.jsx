@@ -1,6 +1,7 @@
-import { AppBar, Avatar, Button, IconButton, MenuItem, Toolbar, Tooltip, Typography, Menu, Divider, ListItemIcon} from "@mui/material";
+import { AppBar, Avatar, Button, IconButton, MenuItem, Toolbar, Tooltip, Typography, Menu, Divider, ListItemIcon } from "@mui/material";
+import { Drawer, Box } from '@mui/material';
 import IconPokeball from "./pokeball";
-import { Logout, Settings, Menu as MenuIcon } from "@mui/icons-material";
+import { Logout, Settings, Menu as MenuIcon, Star } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +28,8 @@ export const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
   return (
     <>
       <AppBar>
@@ -37,11 +40,33 @@ export const Navbar = () => {
             alignItems: "center",
             padding: '0 0',
           }}>
-          {login && (
-            <IconButton color="inherit" size="large">
+          
+          <>
+            <IconButton color="inherit" size="large" onClick={() => setIsDrawerOpen(true)}>
               <MenuIcon />
             </IconButton>
-          )}
+              <Drawer
+                anchor="left"
+                open={isDrawerOpen}
+                onClose={() => setIsDrawerOpen(false)}>
+                <Box p={2} width='300px' textAlign='center' role='presentation'>
+                  <Typography variant="h6" component='div'>
+                    Menú principal
+                  </Typography>
+                </Box>
+                <Divider/>
+                <Box p={1} width='300px' textAlign='left' marginY={2}>
+                  <Button>
+                    <Star/>
+                    <Typography variant="subtitle2" component='div' marginX={2}>
+                      Pokémones favoritos
+                    </Typography>
+                  </Button>
+                  
+                </Box>
+              </Drawer>
+          </>                
+
           <Tooltip title={"Regresar al inicio"}>
             <Button
               container
@@ -54,6 +79,7 @@ export const Navbar = () => {
               <Typography variant="h6" textTransform={"none"}>
                 Pokémon App
               </Typography>
+              <Divider/>
             </Button>
           </Tooltip>
           {login && (
