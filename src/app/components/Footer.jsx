@@ -13,6 +13,16 @@ const Root = styled('div')(({ theme }) => ({
   },
 }));
 
+const handleGitHub = () => {
+  window.open ('https://github.com/Jafeth44', '_blank');
+
+  window.open ('https://github.com/jeanarroyo2196', '_blank');
+};
+
+const handleEmail = () => {
+  window.location.href = 'mailto: jafethocampo@icloud.com, jeancarlo2196@gmail.com';
+}
+
 export const Footer = () => {
   const content = (
       <Grid
@@ -39,30 +49,12 @@ export const Footer = () => {
             2023
           </Typography>
         </Grid>
-
-        <Grid
-          container
-          alignItems={'center'}
-          justifyContent={'center'}>
-          <Button variant="text" color="inherit">
-            <Typography variant="subtitle2">
-              Información
-            </Typography>
-          </Button>
-          <Divider sx={{ height: 20, m: 0.5 }} orientation="vertical"/>
-          <Button variant="text" color="inherit">
-            <Typography variant="subtitle2">
-              Contactenos
-            </Typography>
-          </Button>
-        </Grid>
-
       </Grid>
   );
 
   return (
     <Box 
-      height={'150px'}
+      height={'120px'}
       width={'100%'}
       position={'static'}
       bottom={0}
@@ -76,10 +68,16 @@ export const Footer = () => {
     >
       <Root>
         <Divider>
-            <Button color="inherit" sx={{marginX: -1}}>
+            <Button
+            color="inherit"
+            sx={{marginX: -1}}
+            onClick={handleGitHub}>
               <GitHubIcon/>
             </Button>
-            <Button color="inherit" sx={{marginX: -1}}>
+            <Button
+            color="inherit"
+            sx={{marginX: -1}}
+            onClick={handleEmail}>
               <EmailIcon/>
             </Button>
         </Divider>
