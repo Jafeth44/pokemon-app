@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material"
+import { Button, Card, CardContent } from "@mui/material"
 import { styled } from '@mui/material/styles';
 import Divider from '@mui/material/Divider';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -51,7 +51,7 @@ export const Footer = () => {
   );
 
   return (
-    <Box 
+    <Card 
       height={'120px'}
       width={'100%'}
       position={'static'}
@@ -60,10 +60,9 @@ export const Footer = () => {
       justifyContent={'center'}
       alignItems={'center'}
       color={'white'}
-      sx={{
-        backgroundColor: 'rgb(45, 112, 189)'
-      }}
     >
+      <CardContent>
+
       <Root>
         <Divider>
             <Button
@@ -81,6 +80,7 @@ export const Footer = () => {
         </Divider>
         {content}
       </Root>
-    </Box>
+      </CardContent>
+    </Card>
   );
 }
