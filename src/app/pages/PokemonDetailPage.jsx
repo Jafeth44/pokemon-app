@@ -103,6 +103,12 @@ export const PokemonDetailPage = () => {
         px={1}
         maxWidth={"1000px"}>
         <Button
+          sx={{
+            backgroundColor: 'rgb(46,139,87)',
+            '&:hover': {
+              backgroundColor: 'rgb(34, 100, 63)'
+            }
+          }}
           item
           variant="contained"
           onClick={() => navigate(`/pokemon/${id - 1}`)}
@@ -110,6 +116,12 @@ export const PokemonDetailPage = () => {
           Anterior
         </Button>
         <Button
+          sx={{
+            backgroundColor: 'rgb(46,139,87)',
+            '&:hover': {
+              backgroundColor: 'rgb(34, 100, 63)'
+            }
+          }}
           item
           variant="contained"
           onClick={() => navigate(`/pokemon/${id + 1}`)}

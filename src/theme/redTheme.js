@@ -1,7 +1,10 @@
 import { createTheme } from '@mui/material';
 import { red } from '@mui/material/colors';
 
+const primaryDark = 'rgba(65, 105, 225, 0.568)';
+const primaryWhite = 'rgba(135, 206, 250, 0.568)';
 export const redTheme  = (isDarkMode) =>  createTheme({
+
 
   palette: {
     mode: isDarkMode ? 'dark' : 'light',
@@ -19,7 +22,7 @@ export const redTheme  = (isDarkMode) =>  createTheme({
     MuiCardContent: {
       styleOverrides: {
         root: {
-          backgroundColor: isDarkMode ? 'rgb(62, 88, 119)' : 'rgb(155, 202, 255)',
+          backgroundColor: isDarkMode ? primaryDark : primaryWhite,
         }
       }
     },
@@ -27,7 +30,8 @@ export const redTheme  = (isDarkMode) =>  createTheme({
       styleOverrides: {
         root: {
           backdropFilter: 'blur(15px)',
-          backgroundColor: isDarkMode ? 'rgba(0, 9, 20, 0.85)' : 'rgba(45, 112, 189, 0.85)',
+          backgroundColor: isDarkMode ? primaryDark : primaryWhite,
+          color: isDarkMode ? 'white' : 'black',
           borderBottom: isDarkMode ? '1px solid rgba(71, 71, 71, 0.651)' : 'none',
         }
       }
@@ -43,9 +47,17 @@ export const redTheme  = (isDarkMode) =>  createTheme({
       styleOverrides: {
         paper: {
           backdropFilter: 'blur(15px)',
-          backgroundColor: isDarkMode ? 'rgba(26, 35, 46, 0.85)' : 'rgba(240, 240, 240, 0.85)',
+          backgroundColor: isDarkMode ? primaryDark : primaryWhite,
           border: isDarkMode ? '1px solid rgba(71, 71, 71, 0.651)' : 'none',
         },
+      }
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backdropFilter: 'blur(35px)',
+          backgroundColor: isDarkMode ? 'rgba(22, 30, 53, 0.842)' : 'rgba(205, 235, 253, 0.863)',
+        }
       }
     }
   },
