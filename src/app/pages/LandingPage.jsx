@@ -100,7 +100,7 @@ export const LandingPage = () => {
           </Typography>
 
           <Typography variant="h6" textAlign={"center"}>
-            Selecciona tu región favorita para ver todos los pokémons
+            Selecciona la región para atrapar a tu pokémon favorito
           </Typography>
         </Grid>
         {regions.map((region) => (
