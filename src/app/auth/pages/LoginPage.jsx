@@ -46,7 +46,7 @@ export const LoginPage = () => {
 
   return (
     <>
-      <h1>LoginPage</h1>
+      <h1>Iniciar sesión</h1>
       <Grid
         container
         flexDirection={"column"}

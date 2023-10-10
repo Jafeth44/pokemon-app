@@ -233,7 +233,7 @@ export const Navbar = () => {
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
-          cerrar sesión
+          Cerrar sesión
         </MenuItem>
       </Menu>
     </>
