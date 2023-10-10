@@ -14,9 +14,7 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const handleGitHub = () => {
-  window.open ('https://github.com/Jafeth44', '_blank');
-
-  window.open ('https://github.com/jeanarroyo2196', '_blank');
+  window.open ('https://github.com/Jafeth44/pokemon-app', '_blank');
 };
 
 const handleEmail = () => {
